@@ -19,11 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/url', urlRouter);
 app.use('/api/auth', userRouter);
 
-app.use(express.static(path.join(import.meta.dirname, 'dist')));
-console.log(import.meta.dirname);
+app.use(express.static(path.join(process.cwd(), 'dist')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(import.meta.dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
 });
 
 app.get('/api/health', (req, res) => {
