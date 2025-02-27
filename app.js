@@ -5,6 +5,7 @@ import userRouter from './routes/user.routes.js';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import path from 'path';
+import { connectDB } from './config/connectDB.js';
 dotenv.config();
 
 const app = express();
@@ -30,4 +31,11 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ message: 'API is working!' });
 });
 
-export default app;
+const startApp = async () => {
+  await connectDB();
+  app.listen(3000, () => {
+    console.log('Server running on port 3000...');
+  });
+};
+
+startApp();
