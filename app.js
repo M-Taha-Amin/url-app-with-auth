@@ -20,6 +20,7 @@ app.use('/api/url', urlRouter);
 app.use('/api/auth', userRouter);
 
 app.use(express.static(path.join(import.meta.dirname, 'dist')));
+console.log(import.meta.dirname);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(import.meta.dirname, 'dist', 'index.html'));
