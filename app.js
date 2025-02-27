@@ -19,12 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/url', urlRouter);
 app.use('/api/auth', userRouter);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(import.meta.dirname, 'dist')));
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(import.meta.dirname, 'dist', 'index.html'));
-  });
-}
+app.use(express.static(path.join(import.meta.dirname, 'dist')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(import.meta.dirname, 'dist', 'index.html'));
+});
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ message: 'API is working!' });
